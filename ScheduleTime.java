@@ -24,5 +24,14 @@ public class ScheduleTime {
 	public Patient getPatient() { return patient; }
 	public Room getRoom() { return room; }
 
+	@Override
+	public String toString() {
+		return "Schedule " + "from=" + from + ", to=" + to + ", note='" + note + '\'' +
+				", employees=" + employees +
+				", patient=" + patient +
+				", room=" + room + '}';
+	}
+	public void prendre_un_rendez_vous(){
 
+	}
 }
