@@ -33,5 +33,10 @@ public class Patient {
 	public List<Diagnosis> getDiagnoses() { return diagnoses; }
 	public List<PatientHistory> getHistory() { return history; }
 
+	@Override
+	public String toString() {
+		return firstName + " " + lastName;
+	}
+
 
 }
