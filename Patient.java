@@ -37,19 +37,16 @@ public class Patient {
 	public List<Diagnosis> getDiagnoses() { return diagnoses; }
 	public List<PatientHistory> getHistory() { return history; }
 
-	// --- Conversion en ligne de texte pour fichier ---
 	@Override
 	public String toString() {
-		// On met les attributs séparés par ";"
-		return firstName + ";" + lastName + ";" + healthInsuranceNumber + ";" +
-				(sex != null ? sex.name() : "") + ";" +
-				(address != null ? address : "") + ";" +
+		return firstName + "," + lastName + "," + healthInsuranceNumber + "," +
+				(sex != null ? sex.name() : "") + "," +
+				(address != null ? address : "") + "," +
 				(currentStatus != null ? currentStatus.name() : "");
 	}
 
-	// --- Recréation d'un Patient depuis une ligne de fichier ---
 	public static Patient fromString(String line) {
-		String[] parts = line.split(";", -1); // -1 pour garder les champs vides
+		String[] parts = line.split(",", -1); // -1 pour garder les champs vides
 		if (parts.length >= 6) {
 			String firstName = parts[0];
 			String lastName = parts[1];
