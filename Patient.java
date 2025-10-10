@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,11 +17,17 @@ public class Patient {
 
 	public Patient() {}
 
-	public Patient(String firstName, String lastName) {
+	public Patient(String firstName, String lastName, String healthInsuranceNumber,
+				   Sex sex, String address, PatientStatus currentStatus) {
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.healthInsuranceNumber = healthInsuranceNumber;
+		this.sex = sex;
+		this.address = address;
+		this.currentStatus = currentStatus;
 	}
 
+	// --- Getters ---
 	public String getFirstName() { return firstName; }
 	public String getLastName() { return lastName; }
 	public String getHealthInsuranceNumber() { return healthInsuranceNumber; }
@@ -30,19 +37,28 @@ public class Patient {
 	public List<Diagnosis> getDiagnoses() { return diagnoses; }
 	public List<PatientHistory> getHistory() { return history; }
 
-	// === Fichier texte ===
+	// --- Conversion en ligne de texte pour fichier ---
 	@Override
 	public String toString() {
-		return firstName + " " + lastName;
+		// On met les attributs séparés par ";"
+		return firstName + ";" + lastName + ";" + healthInsuranceNumber + ";" +
+				(sex != null ? sex.name() : "") + ";" +
+				(address != null ? address : "") + ";" +
+				(currentStatus != null ? currentStatus.name() : "");
 	}
 
+	// --- Recréation d'un Patient depuis une ligne de fichier ---
 	public static Patient fromString(String line) {
-		line = line.trim();
-		if (!line.isEmpty()) {
-			String[] parts = line.split(" ", 2);
+		String[] parts = line.split(";", -1); // -1 pour garder les champs vides
+		if (parts.length >= 6) {
 			String firstName = parts[0];
-			String lastName = parts.length > 1 ? parts[1] : "";
-			return new Patient(firstName, lastName);
+			String lastName = parts[1];
+			String healthInsuranceNumber = parts[2];
+			Sex sex = parts[3].isEmpty() ? null : Sex.valueOf(parts[3]);
+			String address = parts[4];
+			PatientStatus status = parts[5].isEmpty() ? null : PatientStatus.valueOf(parts[5]);
+
+			return new Patient(firstName, lastName, healthInsuranceNumber, sex, address, status);
 		}
 		return null;
 	}
