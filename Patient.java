@@ -1,3 +1,5 @@
+import lombok.Getter;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -5,10 +7,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class Patient {
 
 	private PatientStatus currentStatus;
-	private String firstName;
+    private String firstName;
 	private String lastName;
 	private String healthInsuranceNumber;
 	private Sex sex;
@@ -30,16 +33,6 @@ public class Patient {
 		this.currentStatus = currentStatus;
 	}
 
-	// --- Getters ---
-	public String getFirstName() { return firstName; }
-	public String getLastName() { return lastName; }
-	public String getHealthInsuranceNumber() { return healthInsuranceNumber; }
-	public Sex getSex() { return sex; }
-	public String getAddress() { return address; }
-	public PatientStatus getCurrentStatus() { return currentStatus; }
-	public List<Diagnosis> getDiagnoses() { return diagnoses; }
-	public List<PatientHistory> getHistory() { return history; }
-
 	@Override
 	public String toString() {
 		return firstName + "," + lastName + "," + healthInsuranceNumber + "," +
@@ -49,7 +42,7 @@ public class Patient {
 	}
 
 	public static Patient fromString(String line) {
-		String[] parts = line.split(",", -1); // -1 pour garder les champs vides
+		String[] parts = line.split(",", -1);
 		if (parts.length >= 6) {
 			String firstName = parts[0];
 			String lastName = parts[1];
