@@ -76,7 +76,7 @@ public class Main {
                             ", Adresse: " + (patient.getAddress() != null ? patient.getAddress() : "N/A") +
                             ", Statut: " + (patient.getCurrentStatus() != null ? patient.getCurrentStatus() : "N/A"));
                 }
-
+                break;
             case 2:
                 Scanner scanner = new Scanner(System.in);
 
@@ -114,6 +114,7 @@ public class Main {
     System.out.println("Historique enregistré !");
     System.out.println("Affichage de l'historique du patient :");
     PatientHistory.printHistoryForPatient(firstName1, lastName1);
+    break;
             case 3:
                 // Exemple de données
                 Employee e1 = new Employee("E001", "Marie", "Dupont");
@@ -143,6 +144,7 @@ public class Main {
                 // Affichage des rendez-vous valides
                 System.out.println("\n--- Liste des rendez-vous ---");
                 scheduleList.forEach(System.out::println);
+                break;
             case 4:
                 // code block
                 break;
