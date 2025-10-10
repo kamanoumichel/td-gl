@@ -146,7 +146,34 @@ public class Main {
                 scheduleList.forEach(System.out::println);
                 break;
             case 4:
-                // code block
+                Scanner sec = new Scanner(System.in);
+                List<Drug> list = ManageDrug.charger();
+
+                System.out.println("\n=== Add a new drug ===");
+                System.out.print("Code: ");
+                String code = sc.nextLine();
+
+                System.out.print("Name: ");
+                String name = sc.nextLine();
+
+                System.out.print("Form: ");
+                String form = sc.nextLine();
+
+                System.out.print("Description: ");
+                String desc = sc.nextLine();
+
+                System.out.print("Route (administration path): ");
+                String route = sc.nextLine();
+
+                Drug d = new Drug(code, name, form, desc, route);
+                list.add(d);
+
+                ManageDrug.sauvegarder(list);
+
+                System.out.println("\n📋 List of registered drugs:");
+                for (Drug drug : list) {
+                    System.out.println(drug);
+                }
                 break;
             default:
                 // code block
