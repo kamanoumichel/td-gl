@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -39,7 +40,13 @@ public class Main {
                 patientService.addPatient(p);
 
                 System.out.println("\n✅ Patient ajouté avec succès !");
-                patientService.listPatients();
+
+
+                List<Patient> patients = patientService.listPatients();
+                System.out.println("\n📋 Liste des patients :");
+                for (Patient patient : patients) {
+                    System.out.println("- " + patient.getFirstName() + " " + patient.getLastName());
+                }
                 break;
             case 2:
                 // code block

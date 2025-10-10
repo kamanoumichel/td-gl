@@ -1,27 +1,43 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PatientService {
 
-    private List<Patient> patients = new ArrayList<>();
+    private static final String FILE_PATH = "patients.txt";
 
+    // ➕ Ajouter un patient dans le fichier
     public void addPatient(Patient patient) {
-        patients.add(patient);
-    }
-
-    public void listPatients() {
-        if (patients.isEmpty()) {
-            System.out.println("⚠️ Aucun patient enregistré.");
-        } else {
-            System.out.println("\n=== Liste des patients enregistrés ===");
-            for (int i = 0; i < patients.size(); i++) {
-                Patient p = patients.get(i);
-                System.out.println((i + 1) + ". " + p.getFirstName() + " " + p.getLastName());
-            }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
+            writer.write(patient.toString());
+            writer.newLine();
+            System.out.println("✅ Patient ajouté : " + patient.getFirstName() + " " + patient.getLastName());
+        } catch (IOException e) {
+            System.err.println("❌ Erreur lors de l’écriture du patient dans le fichier : " + e.getMessage());
         }
     }
 
-    public List<Patient> getPatients() {
+    public List<Patient> listPatients() {
+        List<Patient> patients = new ArrayList<>();
+        File file = new File(FILE_PATH);
+
+        if (!file.exists()) {
+            System.out.println("⚠️ Aucun patient enregistré.");
+            return patients;
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Patient patient = Patient.fromString(line);
+                if (patient != null) {
+                    patients.add(patient);
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("❌ Erreur lors de la lecture des patients : " + e.getMessage());
+        }
+
         return patients;
     }
 }
