@@ -22,5 +22,14 @@ public class Employee {
 	public String getPhoneNumber() { return phoneNumber; }
 	public List<Action> getAllowedActions() { return allowedActions; }
 
+	public String getFullName() {
+		return firstName + " " + lastName;
+	}
+
+	@Override
+	public String toString() {
+		return getFullName();
+	}
+
 
 }

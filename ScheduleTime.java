@@ -11,10 +11,17 @@ public class ScheduleTime {
 	private Patient patient;
 	private Room room;
 
-	public ScheduleTime() {}
+	//public ScheduleTime() {}
 
 	public ScheduleTime(LocalDateTime from, LocalDateTime to, String note/*, Room room*/) {
 		this.from = from; this.to = to; this.note = note; //this.room = room;
+	}
+	public ScheduleTime(LocalDateTime from, LocalDateTime to, String note, List<Employee> employees, Patient patient) {
+		this.from = from;
+		this.to = to;
+		this.note = note;
+		this.employees = employees;
+		this.patient = patient;
 	}
 
 	public LocalDateTime getFrom() { return from; }
@@ -24,12 +31,17 @@ public class ScheduleTime {
 	public Patient getPatient() { return patient; }
 	public Room getRoom() { return room; }
 
+
 	@Override
 	public String toString() {
-		return "Schedule " + "from=" + from + ", to=" + to + ", note='" + note + '\'' +
-				", employees=" + employees +
-				", patient=" + patient +
-				", room=" + room + '}';
+		return "Rendez-vous du " + from + " au " + to +
+				" avec " + patient.getFirstName() + " " + patient.getLastName() +
+				" (" + employees.size() + " employé(s)) - Note: " + note;
+	}
+
+	// Vérifie si deux rendez-vous se chevauchent
+	public boolean overlaps(ScheduleTime other) {
+		return from.isBefore(other.getTo()) && to.isAfter(other.getFrom());
 	}
 	public void prendre_un_rendez_vous(){
 
