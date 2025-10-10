@@ -10,23 +10,28 @@ public class Main {
     public static void main(String[] args) {
 
         PatientService patientService = new PatientService();
-
-
+        int choix=-1;
+        while (choix != 0 ){
         System.out.println("===============================");
         System.out.println("Sytème de gestion hospitalière");
         System.out.println("===============================");
-        int choix=-1;
+
         System.out.println("Effectuer un choix");
         System.out.println("1-Creer un patient");
         System.out.println("2-Suivre un patient");
         System.out.println("3-Liste des rendez-vous");
         System.out.println("4-Créer un médicament");
+
+            System.out.println("Appuyez 0 pour fermer le programme");
         System.out.print("Veuillez effectué un choix : ");
+
 
         Scanner sc= new Scanner(System.in);
 
         choix= sc.nextInt();
         sc.nextLine(); // vider le buffer
+
+
 
 
         switch(choix) {
@@ -177,7 +182,7 @@ public class Main {
                 break;
             default:
                 // code block
-        }
+        }}
        // System.out.println(choix);
        // Patient p = new Patient("Alice", "Dupont");
         //p.getDiagnoses().add(new Diagnosis(new DiagnosisType("A01", "Example"), "Details", LocalDateTime.now()));
