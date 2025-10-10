@@ -84,8 +84,8 @@ public class Main {
                 // Exemple de données
                 Employee e1 = new Employee("E001", "Marie", "Dupont");
                 Employee e2 = new Employee("E002", "Paul", "Durand");
-                Patient p1 = new Patient("Alice", "Martin");
-                Patient p2 = new Patient("Jean", "Bernard");
+                Patient p1 = new Patient("Alice", "Martin","NJHY15", Sex.Female, "17 Rue Calais", PatientStatus.Hospitalized);
+                Patient p2 = new Patient("Jean", "Bernard","NJHY16",Sex.Male, "17 Rue Calais", PatientStatus.Away);
 
                 // Création des rendez-vous
                 addAppointment(LocalDateTime.of(2025, 10, 10, 9, 0),
