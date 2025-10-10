@@ -19,7 +19,7 @@ public class Main {
         System.out.println("Effectuer un choix");
         System.out.println("1-Creer un patient");
         System.out.println("2-Suivre un patient");
-        System.out.println("3-Gérer rendez-vous");
+        System.out.println("3-Liste des rendez-vous");
         System.out.println("4-Créer un médicament");
         System.out.print("Veuillez effectué un choix : ");
 
