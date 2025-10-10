@@ -76,10 +76,44 @@ public class Main {
                             ", Adresse: " + (patient.getAddress() != null ? patient.getAddress() : "N/A") +
                             ", Statut: " + (patient.getCurrentStatus() != null ? patient.getCurrentStatus() : "N/A"));
                 }
-                break;
 
             case 2:
-                // code block
+                Scanner scanner = new Scanner(System.in);
+
+    System.out.print("Entrez le prénom du patient : ");
+    String firstName1 = scanner.nextLine();
+
+    System.out.print("Entrez le nom du patient : ");
+    String lastName1 = scanner.nextLine();
+
+    Patient patient = Patient.findPatient(firstName1, lastName1);
+    if (patient == null) {
+        System.out.println("Patient non trouvé.");
+        return;
+    }
+
+    System.out.print("Entrez le code de l'employé : ");
+    String empCode = scanner.nextLine();
+
+    Employee emp = Employee.findEmployee(empCode, "employee.txt");
+    if (emp == null) {
+        System.out.println("Employé non trouvé.");
+        return;
+    }
+
+    System.out.print("Entrez le statut du patient (Away, Hospitalized, Operated, IntensiveCare, Unrecorded) : ");
+    String statusStr = scanner.nextLine();
+    PatientStatus status2 = PatientStatus.valueOf(statusStr);
+
+    System.out.print("Entrez une note : ");
+    String note = scanner.nextLine();
+
+    PatientHistory history = new PatientHistory(LocalDateTime.now(), status2, emp, note);
+    PatientHistory.saveToFile(patient, history);
+
+    System.out.println("Historique enregistré !");
+    System.out.println("Affichage de l'historique du patient :");
+    PatientHistory.printHistoryForPatient(firstName1, lastName1);
             case 3:
                 // Exemple de données
                 Employee e1 = new Employee("E001", "Marie", "Dupont");

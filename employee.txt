@@ -1,0 +1,8 @@
+1001,John,Smith,0612345678,Doctor
+1002,Sarah,Brown,0623456789,Nurse
+1003,Emily,Clark,0634567890,Receptionist
+1004,Michael,Johnson,0645678901,TechnicalStaff
+1005,Linda,White,0656789012,Doctor
+1006,Robert,Green,0667890123,Nurse
+1007,Jessica,Hall,0678901234,Receptionist
+1008,David,King,0689012345,TechnicalStaff

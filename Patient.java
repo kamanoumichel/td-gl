@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,4 +62,19 @@ public class Patient {
 		}
 		return null;
 	}
+
+	public static Patient findPatient(String firstName, String lastName) {
+    try (BufferedReader reader = new BufferedReader(new FileReader("patients.txt"))) {
+        String line;
+        while ((line = reader.readLine()) != null) {
+            Patient p = Patient.fromString(line);
+            if (p != null && p.getFirstName().equals(firstName) && p.getLastName().equals(lastName)) {
+                return p;
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return null;
+}
 }
