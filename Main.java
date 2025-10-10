@@ -3,6 +3,10 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
+        PatientService patientService = new PatientService();
+
+
         System.out.println("===============================");
         System.out.println("Sytème de gestion hospitalière");
         System.out.println("===============================");
@@ -13,12 +17,29 @@ public class Main {
         System.out.println("3-Gérer rendez-vous");
         System.out.println("4-Créer un médicament");
         System.out.print("Veuillez effectué un choix : ");
+
         Scanner sc= new Scanner(System.in);
+
         choix= sc.nextInt();
+        sc.nextLine(); // vider le buffer
+
 
         switch(choix) {
             case 1:
-                // code block
+                System.out.println("\n=== Création d’un nouveau patient ===");
+
+                System.out.print("Prénom : ");
+                String firstName = sc.nextLine();
+
+                System.out.print("Nom : ");
+                String lastName = sc.nextLine();
+
+                Patient p = new Patient(firstName, lastName);
+
+                patientService.addPatient(p);
+
+                System.out.println("\n✅ Patient ajouté avec succès !");
+                patientService.listPatients();
                 break;
             case 2:
                 // code block
